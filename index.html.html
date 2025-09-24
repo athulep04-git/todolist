@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+        body{
+            background-color:rgb(89, 82, 82);
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            
+
+        }
+        li i {
+        padding: 30px;
+        cursor: pointer;
+        }
+        .section{
+            background-color: white;
+            width: 80%;
+            margin-top: 100px;
+            padding: 80px;
+            display: flex;
+            border-radius: 10px;
+        }
+
+        .box1{
+            width: 60%;
+        }
+        .box2{
+            width: 40%;
+            margin-left: 50px;
+
+        }
+        .box1 img{
+            width: 500px;
+        }
+        input{
+            width: 200px;
+            padding: 10px;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 5px;
+        }
+        input:hover{
+            width: 200px;
+            padding: 10px;
+            border: 1px solid rgb(154, 147, 255);
+        }
+        button{
+            background-color: rgb(70, 70, 255);
+            border:none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            width: 80px;
+        }
+        button:hover{
+            background-color: rgb(118, 118, 255);
+            border:none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            width: 80px;
+        }
+        .form h1{
+            padding-bottom: 20px;
+        }
+        .qwe{
+            padding-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <div class="box1">
+            <img src="https://imageio.forbes.com/specials-images/dam/imageserve/1092571024/960x0.jpg?height=474&width=711&fit=bounds" alt="">
+        </div>
+        <div class="box2">
+            <div class="form">
+                 <h1>My ToDo List</h1>
+            <input type="text" id="tododata" placeholder="Enter the task">
+            <button onclick="addtask()">Add</button>
+            </div>
+
+            <div class="qwe">
+                <ul id="todolist">
+
+                </ul>
+            </div>
+           
+        </div>
+    </section>
+    <script>
+        function addtask(){
+            let todo=document.getElementById('tododata').value
+            console.log(todo);
+
+            li=document.createElement('li')//create new list item
+            li.innerHTML=`
+            <div>
+                ${todo}
+                <i onclick="edittask(this)" class="fa-solid fa-pen"></i>
+                <i class="fa-solid fa-trash"></i>
+            <div>`//assign todo to the li tag
+            document.getElementById('todolist').appendChild(li)//append each values to the list
+        }
+
+        function edittask(emt){
+            console.log(emt);//get current edit button
+            console.log(emt.parentNode);//parent node of edit button
+            li=emt.parentNode
+            console.log(li.textContent);//value in the parentNode
+            let oldtxt=li.textContent
+            let newtxt=prompt("Enter task",oldtxt)
+            console.log(newtxt);
+            if(newtxt)
+            {
+                console.log(li.childNodes[2]);
+                li.childNodes[2].textContent=newtxt
+                
+            }
+            
+        }
+        function deletetask(){
+
+        }
+    </script>
+</body>
+</html>
