@@ -20,7 +20,7 @@
 
         }
         li i {
-        padding: 30px;
+        padding: 10px;
         cursor: pointer;
         }
         .section{
@@ -76,8 +76,10 @@
             padding-bottom: 20px;
         }
         .qwe{
-            padding-left: 40px;
+            padding-left: 40px;  
         }
+        
+
     </style>
 </head>
 <body>
@@ -107,10 +109,10 @@
 
             li=document.createElement('li')//create new list item
             li.innerHTML=`
-            <div>
+            <div >
                 ${todo}
                 <i onclick="edittask(this)" class="fa-solid fa-pen"></i>
-                <i class="fa-solid fa-trash"></i>
+                <i onclick="deletetask(this)" class="fa-solid fa-trash"></i>
             <div>`//assign todo to the li tag
             document.getElementById('todolist').appendChild(li)//append each values to the list
         }
@@ -125,13 +127,18 @@
             console.log(newtxt);
             if(newtxt)
             {
-                console.log(li.childNodes[2]);
-                li.childNodes[2].textContent=newtxt
-                
+                li.innerHTML=`
+                ${newtxt}
+                <i onclick="edittask(this)" class="fa-solid fa-pen"></i>
+                <i onclick="deletetask(this)" class="fa-solid fa-trash"></i>
+                `   
             }
+
             
         }
-        function deletetask(){
+        function deletetask(emt){
+            li=emt.parentNode
+            li.remove()
 
         }
     </script>
