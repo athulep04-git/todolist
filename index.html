@@ -104,17 +104,22 @@
     </section>
     <script>
         function addtask(){
-            let todo=document.getElementById('tododata').value
+            let todo=document.getElementById('tododata').value.trim();
+            if(todo=== "") {
+                alert("Please enter a task");
+                return;
+            }
             console.log(todo);
 
             li=document.createElement('li')//create new list item
             li.innerHTML=`
-            <div >
+            <div>
                 ${todo}
                 <i onclick="edittask(this)" class="fa-solid fa-pen"></i>
                 <i onclick="deletetask(this)" class="fa-solid fa-trash"></i>
             <div>`//assign todo to the li tag
             document.getElementById('todolist').appendChild(li)//append each values to the list
+            document.getElementById('tododata').value = "";
         }
 
         function edittask(emt){
@@ -137,9 +142,8 @@
             
         }
         function deletetask(emt){
-            li=emt.parentNode
-            li.remove()
-
+            let li = emt.parentNode.parentNode;
+            li.remove();
         }
     </script>
 </body>
